@@ -1,23 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import DynamicForm from "./components/DynamicForm/DynamicForm";
 
 function App() {
+  const [formState, setFormState] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
+  const handleChange = (e) => {
+    setFormState({
+      ...formState,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formState);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>App</h1>
+      <DynamicForm/>
+      {/* <form onSubmit={handleSubmit}>
+        <div>
+          <label>What is your Name?</label>
+          <input
+            type="text"
+            name="name"
+            id=""
+            placeholder="John Doe"
+            value={formState.name}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>What is your Email?</label>
+          <input
+            type="email"
+            name="email"
+            id=""
+            placeholder="test@test.com"
+            value={formState.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div>
+          <label>What is your Phone Number?</label>
+          <input
+            type="tel"
+            name="phone"
+            id=""
+            placeholder="+8801863934966"
+            value={formState.phone}
+            onChange={handleChange}
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form> */}
     </div>
   );
 }
